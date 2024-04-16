@@ -19,16 +19,8 @@ context = pd.read_csv('app/tweets_data.csv')
 loader = DataFrameLoader(context)
 documents = loader.load()
 
-def main():
-  # Application main title
-  st.markdown("<h1 style='text-align: center;'> Lobbying with Google Gemini ai </h1>", unsafe_allow_html=True)
-  st.write('---')
+def get_sen_stance(documents, question):
   
-  # Ask Gemini
-  st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
-  question = st.text_input('Ask Gemini about Senatorial Stance')
-  st.write('---')
-    
   # Define Prompt Template
   prompt_template = """
   what is the senatorial stance on {question}, return only the list of twitter handles of senators with : probable support, probable opposition, probable neutral position.
@@ -47,6 +39,26 @@ def main():
   # Get Response
   response = chain({"input_documents": documents, "question": question}, return_only_outputs=True)
 
+  return response
+  
+
+def main():
+  # Application main title
+  st.markdown("<h1 style='text-align: center;'> Lobbying with Google Gemini ai </h1>", unsafe_allow_html=True)
+  st.write('---')
+  
+  # Ask Gemini
+  st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
+  question = st.text_input('Ask Gemini about Senatorial Stance', 'debt ceiling')
+  
+  #Button for submit
+  ask = st.button('Response?')
+
+  #When button is clicked
+  if ask:
+    response = get_sen_stance(documents, question)
+  st.write('---')
+    
   # Results
   st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
   # st.expande 4 cols (support/opposition/neutrals/Undecisive)
