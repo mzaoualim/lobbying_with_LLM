@@ -13,7 +13,7 @@ from langchain.vectorstores import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain.document_loaders import DataFrameLoader
 
-GOOGLE_API_KEY = ['AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg']
+GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
 os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
 context = pd.read_csv('app/tweets_data.csv')
 loader = DataFrameLoader(context)
