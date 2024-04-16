@@ -2,7 +2,6 @@ streamlit
 
 pandas
 matplotlib
-glob
 
 langchain
 langchain_google_genai
