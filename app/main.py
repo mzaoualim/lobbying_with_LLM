@@ -25,7 +25,7 @@ def main():
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
-  question = st.text_input('Ask Gemini about Senatorial Stance', use_container_width=True)
+  question = st.text_input('Ask Gemini about Senatorial Stance')
     
   # Define Prompt Template
   prompt_template = """
