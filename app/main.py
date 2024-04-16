@@ -47,8 +47,8 @@ def main():
   st.markdown("<h1 style='text-align: center;'> Lobby{ai}st Buddy </h1>", unsafe_allow_html=True)
   st.write('---')
 
-  with st.sidebar:
-    st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='password')
+  # with st.sidebar:
+    # st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='password')
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
@@ -59,12 +59,16 @@ def main():
   #When button is clicked
   if ask:
     response = get_sen_stance(documents, question)
+    for a, b in response.items():
+      ans = eval(b.strip('```python\n'))
     st.write('---')
       
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
     # st.expande 4 cols (support/opposition/neutrals/Undecisive)
-    st.write(response)
+    sup, opp, neu, und = st.columns(4)
+    with sup:
+      st.selectbox('Supporters', ans['Support'])
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
