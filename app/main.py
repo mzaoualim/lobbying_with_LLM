@@ -48,7 +48,7 @@ def main():
   st.write('---')
 
   with st.sidebar:
-    st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='default')
+    st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='password')
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
