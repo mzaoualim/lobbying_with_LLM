@@ -14,6 +14,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain.document_loaders import DataFrameLoader
 
 GOOGLE_API_KEY = ['AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg']
+os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
 context = pd.read_csv('app/tweets_data.csv')
 loader = DataFrameLoader(context)
 documents = loader.load()
@@ -39,7 +40,7 @@ def main():
   prompt = PromptTemplate(template=prompt_template, input_variables=['context', 'question'])
   
   # Load QA Chain
-  model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=1, api_key=GOOGLE_API_KEY)
+  model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=1, api_key=os.environ['GOOGLE_API_KEY'])
   # Load QA Chain
   chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
   # Get Response
