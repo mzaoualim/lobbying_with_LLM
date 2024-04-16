@@ -46,6 +46,10 @@ def main():
   # Application main title
   st.markdown("<h1 style='text-align: center;'> Lobby{ai}st Buddy </h1>", unsafe_allow_html=True)
   st.write('---')
+
+  with st.sidebar:
+    with st.echo():
+        st.write("This code will be printed to the sidebar.")
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
