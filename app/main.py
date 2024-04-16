@@ -48,11 +48,14 @@ def main():
   st.write('---')
   
   # Ask Gemini
+  a, b = st.columns(2)
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
+  with a:
   question = st.text_input('Ask Gemini about Senatorial Stance', 'debt ceiling')
-  
+
+  with b:
   #Button for submit
-  ask = st.button('Response?')
+  ask = st.button('Response?', use_container_width=True)
 
   #When button is clicked
   if ask:
