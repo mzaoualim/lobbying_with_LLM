@@ -27,6 +27,7 @@ def main():
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
   question = st.text_input('Ask Gemini about Senatorial Stance')
+  st.write('---')
     
   # Define Prompt Template
   prompt_template = """
@@ -46,8 +47,14 @@ def main():
   # Get Response
   response = chain({"input_documents": documents, "question": question}, return_only_outputs=True)
 
+  # Results
+  st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
+  # st.expande 4 cols (support/opposition/neutrals/Undecisive)
   st.write(response)
+  st.write('---')
 
+  st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
+  st.write('---')
 
 if __name__ == '__main__':
   main()
