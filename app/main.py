@@ -14,7 +14,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGener
 from langchain.document_loaders import DataFrameLoader
 
 GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
-context = pd.read_csv('/lobbying_with_LLM/blob/main/tweets_data.csv')
+context = pd.read_csv('/tweets_data.csv')
 loader = DataFrameLoader(context)
 documents = loader.load()
 
