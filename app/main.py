@@ -44,14 +44,14 @@ def get_sen_stance(documents, question):
 
 def main():
   # Application main title
-  st.markdown("<h1 style='text-align: center;'> Lobbying with Google Gemini ai </h1>", unsafe_allow_html=True)
+  st.markdown("<h1 style='text-align: center;'> Lobby{ai}st Buddy </h1>", unsafe_allow_html=True)
   st.write('---')
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
-  question = st.text_input('Ask Gemini about Senatorial Stance', 'debt ceiling')
+  question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
   #Button for submit
-  ask = st.button('Response?', use_container_width=True)
+  ask = st.button('Analyze!', use_container_width=True)
 
   #When button is clicked
   if ask:
