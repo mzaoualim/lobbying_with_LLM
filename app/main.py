@@ -69,6 +69,12 @@ def main():
     sup, opp, neu, und = st.columns(4)
     with sup:
       st.selectbox('Supporters', ans['Support'])
+    with opp:
+      st.selectbox('Opposition', ans['Opposition'])
+    with neu:
+      st.selectbox('Neutral', ans['Neutral'])
+    with und:
+      st.selectbox('Supporters', ans['Support'])
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
