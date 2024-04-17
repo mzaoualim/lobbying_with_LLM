@@ -142,8 +142,8 @@ def main():
     len_undecided = 100 - sum([len(i) for i in answer.values()])
 
     # getting labels and sizes
-    labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
-    sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
+    labels = [i for i in answer_dict.keys() if len(answer_dict[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
+    sizes = [len(i) for i in answer_dict.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
     fig.update_layout(title_text='Senatorial Stance Repartition')
