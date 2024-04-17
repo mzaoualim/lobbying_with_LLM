@@ -88,7 +88,7 @@ def main():
   with demo_tab:
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    demo_df = pd.read_csv('app/demonstration_dataframe.csv')
+    demo_df = pd.read_csv('app/demonstration_dataframe.csv', usecols=[1,2,3,4]).fillna('',inplace=True)
     st.dataframe(demo_df, use_container_width=True, hide_index=True)
     st.write('---')
       
