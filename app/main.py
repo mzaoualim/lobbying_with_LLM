@@ -43,7 +43,7 @@ def get_sen_stance(documents, question):
 
   return response
 
-def dataframe_answer(response, tweet_data):
+def dataframe_answer(response, tweet_data_link='app/tweets_data.csv'):
   '''
   Tranforme the response provided by Gemini AI into a readable dataframe of
   Senators who Support, Oppose, Neutral or Undecided vis-a-vis the question asked
@@ -59,7 +59,7 @@ def dataframe_answer(response, tweet_data):
   senat = [j for i in answer.values() for j in i]
 
   # filter undecided senators
-  tweet_data = context
+  tweet_data = pd.read_csv(tweet_data_link)
   undecided = ['@'+i for i in th['Twitter_handles'].values if i not in senat]
   undecided_df = pd.DataFrame(undecided, columns=['Undecided'])
 
@@ -92,7 +92,7 @@ def main():
       
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    st.dataframe(dataframe_answer(response, tweet_data), dataframe_answer(response, tweet_data))
+    st.dataframe(dataframe_answer(response, tweet_data), use_container_width=False)
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
