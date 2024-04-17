@@ -93,7 +93,7 @@ def main():
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
     df = dataframe_answer(response, tweet_data_link)
-    st.dataframe(df, , use_container_width=True)
+    st.dataframe(df, use_container_width=True)
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
