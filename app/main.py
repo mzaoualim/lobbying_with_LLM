@@ -4,6 +4,7 @@ import streamlit as st
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 import glob
 
 from langchain.prompts import PromptTemplate
@@ -109,8 +110,9 @@ def main():
     labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
     sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
     
-    fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, autopct='%.1f%%')
+    # fig, ax = plt.subplots()
+    # ax.pie(sizes, labels=labels, autopct='%.1f%%')
+    fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
     st.pyplot(fig)
     st.write('---')
 
