@@ -84,12 +84,12 @@ def main():
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
   
   #Button for submit
-  demo_tab, live_tab = st.tabs(['Demonstration', 'Custmized & live'])
+  demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
   with demo_tab:
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    df, answer = dataframe_answer(response, 'app/demonstration_dataframe.csv')
-    st.dataframe(df, use_container_width=True, hide_index=True)
+    demo_df = pd.read_csv('app/demonstration_dataframe.csv')
+    st.dataframe(demo_df, use_container_width=True, hide_index=True)
     st.write('---')
       
       
