@@ -20,7 +20,9 @@ loader = DataFrameLoader(context)
 documents = loader.load()
 
 def get_sen_stance(documents, question):
-  
+  '''
+  generate answer from Gemini ai
+  '''
   # Define Prompt Template
   prompt_template = """
   what is the senatorial stance on {question}, return only the list of twitter handles of senators with : probable support, probable opposition, probable neutral position.
@@ -40,6 +42,33 @@ def get_sen_stance(documents, question):
   response = chain({"input_documents": documents, "question": question}, return_only_outputs=True)
 
   return response
+
+def dataframe_answer(response, tweet_data):
+  '''
+  Tranforme the response provided by Gemini AI into a readable dataframe of
+  Senators who Support, Oppose, Neutral or Undecided vis-a-vis the question asked
+  '''
+  # cleaning dicitonnary
+  for a, b in response.items():
+    answer = eval(b.strip('```python\n'))
+
+  # Initial DataFrame
+  initial_df = pd.DataFrame.from_dict(answer, orient='index').T
+
+  # generate a list of all senators in response
+  senat = [j for i in answer.values() for j in i]
+
+  # filter undecided senators
+  tweet_data = context
+  undecided = ['@'+i for i in th['Twitter_handles'].values if i not in senat]
+  undecided_df = pd.DataFrame(undecided, columns=['Undecided'])
+
+  # generate and format final dataframe
+  df_final = pd.concat([initial_df, undecided_df], axis=1)
+  df_final.fillna('', inplace=True)
+
+  # return result dataframe
+  return df_final
   
 
 def main():
@@ -59,22 +88,11 @@ def main():
   #When button is clicked
   if ask:
     response = get_sen_stance(documents, question)
-    for a, b in response.items():
-      ans = eval(b.strip('```python\n'))
     st.write('---')
       
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    # st.expande 4 cols (support/opposition/neutrals/Undecisive)
-    sup, opp, neu, und = st.columns(4)
-    with sup:
-      st.selectbox('Supporters', ans['Support'])
-    with opp:
-      st.selectbox('Opposition', ans['Opposition'])
-    with neu:
-      st.selectbox('Neutral', ans['Neutral'])
-    with und:
-      st.selectbox('Supporters', ans['Support'])
+    st.dataframe(dataframe_answer(response, tweet_data), dataframe_answer(response, tweet_data))
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
