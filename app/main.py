@@ -111,7 +111,6 @@ def main():
     
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%.1f%%')
-    fig.update_layout(uniformtext_minsize=1, uniformtext_mode='hide')
     st.pyplot(fig)
     st.write('---')
 
