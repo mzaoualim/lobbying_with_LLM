@@ -84,39 +84,46 @@ def main():
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
   
   #Button for submit
-  but_1, but_2 = st.columns(2)
-  with but_1:
-    ask = st.button('Analyze!', use_container_width=True)
-    question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
-  with but_2:
-    ask_2 = st.button('Demo Mode', use_container_width=True)
-    question = st.selectbox('Select Saved Answer About: ', options=['A', 'B', 'C'])
-
-  #When button is clicked
-  if ask:
-    response = get_sen_stance(documents, question)
-    st.write('---')
-      
+  demo_tab, live_tab = st.tabs(['Demonstration', 'Custmized & live'])
+  with demo_tab:
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    df, answer = dataframe_answer(response, 'app/tweets_data.csv')
+    df, answer = dataframe_answer(response, 'app/demonstration_dataframe.csv')
     st.dataframe(df, use_container_width=True, hide_index=True)
     st.write('---')
-  
-    st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
-    # PieChart of Senatorial Stance    
-    # compute the size of remaining undecided senators
-    len_undecided = 100 - sum([len(i) for i in answer.values()])
-    labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
-    sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
+      
+      
+  with live_tab:
+    ask = st.button('Analyze!', use_container_width=True)
+    question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
     
-    # fig, ax = plt.subplots()
-    # ax.pie(sizes, labels=labels, autopct='%.1f%%')
-    fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-    fig.update_layout(title_text=f'Senatorial Stance on {question}')
-    st.plotly_chart(fig, use_container_width=False, theme="streamlit")
-    # st.pyplot(fig)
-    st.write('---')
+    #When button is clicked
+    if ask:
+      response = get_sen_stance(documents, question)
+      st.write('---')
+        
+      # Results
+      st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
+      df, answer = dataframe_answer(response, 'app/tweets_data.csv')
+      st.dataframe(df, use_container_width=True, hide_index=True)
+      st.write('---')
+    
+      st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
+      # PieChart of Senatorial Stance    
+      # compute the size of remaining undecided senators
+      len_undecided = 100 - sum([len(i) for i in answer.values()])
+      labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
+      sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
+      
+      # fig, ax = plt.subplots()
+      # ax.pie(sizes, labels=labels, autopct='%.1f%%')
+      fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
+      fig.update_layout(title_text=f'Senatorial Stance on {question}')
+      st.plotly_chart(fig, use_container_width=False, theme="streamlit")
+      # st.pyplot(fig)
+      st.write('---')
+
+  
 
 if __name__ == '__main__':
   main()
