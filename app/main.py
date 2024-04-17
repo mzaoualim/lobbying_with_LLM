@@ -113,7 +113,8 @@ def main():
     # fig, ax = plt.subplots()
     # ax.pie(sizes, labels=labels, autopct='%.1f%%')
     fig = go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-    st.pyplot(fig)
+    st.plotly_chart(fig, use_container_width=False, sharing="streamlit", theme="streamlit")
+    # st.pyplot(fig)
     st.write('---')
 
 if __name__ == '__main__':
