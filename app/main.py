@@ -110,7 +110,8 @@ def main():
     sizes = [len(i) for i in answer.values()] + [len_undecided]
     
     fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, autopct='%.1f%%', uniformtext_minsize=1, uniformtext_mode='hide')
+    ax.pie(sizes, labels=labels, autopct='%.1f%%')
+    fig.update_layout(uniformtext_minsize=1, uniformtext_mode='hide')
     st.pyplot(fig)
     st.write('---')
 
