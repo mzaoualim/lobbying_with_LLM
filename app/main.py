@@ -68,7 +68,7 @@ def dataframe_answer(response, tweet_data_link='app/tweets_data.csv'):
   df_final.fillna('', inplace=True)
 
   # return result dataframe
-  return df_final
+  return df_final, answer
   
 
 def main():
@@ -92,11 +92,20 @@ def main():
       
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
-    df = dataframe_answer(response, 'app/tweets_data.csv')
-    st.dataframe(df, use_container_width=True)
+    df, answer = dataframe_answer(response, 'app/tweets_data.csv')
+    st.dataframe(df, use_container_width=True, hide_index=True)
     st.write('---')
   
     st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
+    # PieChart of Senatorial Stance    
+    # compute the size of remaining undecided senators
+    len_undecided = 100 - sum([len(i) for i in answer.values()])
+    labels = [i for i in answer.keys()] + ['Undecided']
+    sizes = [len(i) for i in answer.values()] + [len_undecided]
+    
+    fig, ax = plt.subplots()
+    ax.pie(sizes, labels=labels, autopct='%.1f%%')
+    st.pyplot(fig)
     st.write('---')
 
 if __name__ == '__main__':
