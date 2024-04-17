@@ -89,7 +89,7 @@ def main():
     question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
   with but_2:
     ask_2 = st.button('Demo Mode', use_container_width=True)
-    question = st.selectbox('Select Saved Answer About: ', options['A', 'B', 'C'])
+    question = st.selectbox('Select Saved Answer About: ', options=['A', 'B', 'C'])
 
   #When button is clicked
   if ask:
