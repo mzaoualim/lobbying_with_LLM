@@ -50,7 +50,7 @@ def dataframe_answer(response, tweet_data_link='app/tweets_data.csv'):
   '''
   # cleaning dicitonnary
   for a, b in response.items():
-    answer = eval(b.strip('```python\n'))
+    answer = eval(b.strip("```python\n"))
 
   # Initial DataFrame
   initial_df = pd.DataFrame.from_dict(answer, orient='index').T
