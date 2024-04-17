@@ -105,7 +105,8 @@ def main():
     
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%.1f%%')
-    st.pyplot(fig)
+    # st.pyplot(fig)
+    st.altair_chart(fig, theme="streamlit", use_container_width=True)
     st.write('---')
 
 if __name__ == '__main__':
