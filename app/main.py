@@ -81,13 +81,15 @@ def main():
   
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
-  question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
+  
   #Button for submit
   but_1, but_2 = st.columns(2)
   with but_1:
     ask = st.button('Analyze!', use_container_width=True)
+    question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
   with but_2:
     ask_2 = st.button('Demo Mode', use_container_width=True)
+    question = st.selectbox('Select Saved Answer About: ', options['A', 'B', 'C'])
 
   #When button is clicked
   if ask:
