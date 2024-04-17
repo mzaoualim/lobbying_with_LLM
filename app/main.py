@@ -106,8 +106,8 @@ def main():
     # PieChart of Senatorial Stance    
     # compute the size of remaining undecided senators
     len_undecided = 100 - sum([len(i) for i in answer.values()])
-    labels = [i for i in answer.keys()] + ['Undecided']
-    sizes = [len(i) for i in answer.values()] + [len_undecided]
+    labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
+    sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
     
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%.1f%%')
