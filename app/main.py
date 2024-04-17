@@ -87,14 +87,67 @@ def main():
   demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
   with demo_tab:
     # Question
-    demo_q = 'What is the senatorial Stance on the government funding of the energy transition?'
+    st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
+    demo_q = 'What is the senatorial stance on the government funding of the energy transition?'
     st.write(demo_q)
+    
     # Results
-    st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'> Senators Lists by Position </h2>", unsafe_allow_html=True)
     demo_df = pd.read_csv('app/demonstration_dataframe.csv', 
                           usecols=[1,2,3,4])
     st.dataframe(demo_df.fillna(''), use_container_width=True, hide_index=True)
     st.write('---')
+
+    #pie_chart
+    answer_dict = {'Support': ['@SenatorShaheen', '@SenatorBennet', '@SenAngusKing'],
+   'Opposition': ['@SenJohnBarrasso',
+    '@MikeCrapo',
+    '@SenKevinCramer',
+    '@SenatorRounds',
+    '@SenatorHagerty',
+    '@SenLummis',
+    '@SenKatieBritt',
+    '@SteveDaines'],
+   'Neutral': ['@ChrisMurphyCT',
+    '@SenTinaSmith',
+    '@SenToddYoung',
+    '@SenBillCassidy',
+    '@Sen_JoeManchin',
+    '@SenSherrodBrown',
+    '@JDVance1',
+    '@SenatorLankford',
+    '@SenMikeLee',
+    '@lisamurkowski',
+    '@SenMullin',
+    '@SenRandPaul',
+    '@SenatorRicketts',
+    '@SenatorRisch',
+    '@SenatorRomney',
+    '@SenMarcoRubio',
+    '@SenEricSchmitt',
+    '@SenRickScott',
+    '@SenatorTimScott',
+    '@SenDanSullivan',
+    '@SenJohnThune',
+    '@SenThomTillis',
+    '@SenTuberville',
+    '@SenAlexPadilla',
+    '@SenMarkey',
+    '@SenJeffMerkley',
+    '@SenWarren',
+    '@SenWhitehouse']
+                  }
+
+    # compute the size of remaining undecided senators
+    len_undecided = 100 - sum([len(i) for i in answer.values()])
+
+    # getting labels and sizes
+    labels = [i for i in answer.keys() if len(answer[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
+    sizes = [len(i) for i in answer.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
+
+    fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
+    fig.update_layout(title_text='Senatorial Stance Repartition')
+    st.plotly_chart(fig, use_container_width=False, theme="streamlit")
       
       
   with live_tab:
