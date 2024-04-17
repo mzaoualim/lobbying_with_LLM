@@ -146,7 +146,7 @@ def main():
     sizes = [len(i) for i in answer_dict.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
 
     fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-    fig.update_layout(title_text='Senatorial Stance Repartition')
+    fig.update_layout(title_text='Senatorial Stance Repartition', font_color="red")
     st.plotly_chart(fig, use_container_width=False, theme="streamlit")
       
       
