@@ -139,7 +139,7 @@ def main():
                   }
 
     # compute the size of remaining undecided senators
-    len_undecided = 100 - sum([len(i) for i in answer.values()])
+    len_undecided = 100 - sum([len(i) for i in answer_dict.values()])
 
     # getting labels and sizes
     labels = [i for i in answer_dict.keys() if len(answer_dict[i]) > 0] + ['Undecided' if len_undecided > 0 else '']
