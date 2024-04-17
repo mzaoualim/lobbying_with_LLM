@@ -114,7 +114,7 @@ def main():
     # ax.pie(sizes, labels=labels, autopct='%.1f%%')
     fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
     fig.update_layout(title_text=f'Senatorial Stance on {question}')
-    st.plotly_chart(fig, use_container_width=False, sharing="streamlit", theme="streamlit")
+    st.plotly_chart(fig, use_container_width=False, theme="streamlit")
     # st.pyplot(fig)
     st.write('---')
 
