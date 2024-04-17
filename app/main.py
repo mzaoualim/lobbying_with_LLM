@@ -86,6 +86,9 @@ def main():
   #Button for submit
   demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
   with demo_tab:
+    # Question
+    demo_q = 'What is the senatorial Stance on the government funding of the energy transition?'
+    st.write(demo_q)
     # Results
     st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
     demo_df = pd.read_csv('app/demonstration_dataframe.csv', 
