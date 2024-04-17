@@ -83,7 +83,11 @@ def main():
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
   question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
   #Button for submit
-  ask = st.button('Analyze!', use_container_width=True)
+  but_1, but_2 = st.columns(2)
+  with but_1:
+    ask = st.button('Analyze!', use_container_width=True)
+  with but_2:
+    ask_2 = st.button('Demo Mode', use_container_width=True)
 
   #When button is clicked
   if ask:
@@ -105,8 +109,7 @@ def main():
     
     fig, ax = plt.subplots()
     ax.pie(sizes, labels=labels, autopct='%.1f%%')
-    # st.pyplot(fig)
-    st.altair_chart(fig, theme="streamlit", use_container_width=True)
+    st.pyplot(fig)
     st.write('---')
 
 if __name__ == '__main__':
