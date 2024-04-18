@@ -14,8 +14,6 @@ from langchain.vectorstores import Chroma
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain.document_loaders import DataFrameLoader
 
-GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
-os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
 context = pd.read_csv('app/tweets_data.csv')
 loader = DataFrameLoader(context)
 documents = loader.load()
@@ -81,7 +79,7 @@ def main():
     # st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='password')
   
   # Ask Gemini
-  st.markdown("<h3 style='text-align: center;'> With the helpe of Gemini AI </h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align: center;'> With the help of Gemini AI </h3>", unsafe_allow_html=True)
   st.markdown("<h3 style='text-align: center;'> Derive Senatorial Stance on Policies, Laws and Ideas... </h3>", unsafe_allow_html=True)
   st.markdown("<h3 style='text-align: center;'> by Analysing the Senators' published tweets (X) </h3>", unsafe_allow_html=True)
   st.write('---')
@@ -93,7 +91,7 @@ def main():
     st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
     q, ask_demo = st.columns([3,1])
     with q:
-      demo_q = 'What is the senatorial stance on the government funding of the energy transition?'
+      demo_q = 'Government funding of the energy transition'
       st.write(demo_q)
     with ask_demo:
       ask_butt = st.button('Analyze!', use_container_width=True)
@@ -155,9 +153,6 @@ def main():
   
       fig, ax = plt.subplots()
       ax.pie(sizes, labels=labels, autopct='%.1f%%')
-      # fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-      # fig.update_layout(title_text=f'Senatorial Stance on {question}', font = {'color': 'black', 'size': 15})
-      # st.plotly_chart(fig, use_container_width=False, theme="streamlit")
       st.pyplot(fig)
       
       
@@ -169,6 +164,8 @@ def main():
 
     #When button is clicked
     if ask_live:
+      GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
+      os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
       response = get_sen_stance(documents, question)
         
       # Results
