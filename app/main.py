@@ -162,7 +162,7 @@ def main():
     st.write('---')
 
     #When button is clicked
-    if ask:
+    if ask_live:
       response = get_sen_stance(documents, question)
       st.write('---')
         
