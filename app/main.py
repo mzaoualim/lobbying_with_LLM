@@ -88,7 +88,7 @@ def main():
   with demo_tab:
     # Question
     st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
-    q, aks_butt = st.colummns(3,1):
+    q, aks_butt = st.colummns(3,1)
     with q:
       demo_q = 'What is the senatorial stance on the government funding of the energy transition?'
       st.write(demo_q)
