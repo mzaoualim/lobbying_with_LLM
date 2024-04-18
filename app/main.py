@@ -81,7 +81,10 @@ def main():
     # st.text_input('Insert Your API Key', GOOGLE_API_KEY, type='password')
   
   # Ask Gemini
-  st.markdown("<h3 style='text-align: center;'> With the helpe of Gemini AI \ Derive Senatorial Stance on Policies, Laws and Ideas of your choice \ by Analysing the Senators published tweets (X) </h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align: center;'> With the helpe of Gemini AI </h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align: center;'> Derive Senatorial Stance on Policies, Laws and Ideas of your choice </h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align: center;'> by Analysing the Senators published tweets (X) </h3>", unsafe_allow_html=True)
+  st.write('---')
   
   #tabs for saved demo case or live demo
   demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
