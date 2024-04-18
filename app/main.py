@@ -88,7 +88,7 @@ def main():
   demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
   with demo_tab:
     # Question
-    st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'> Demo Question </h2>", unsafe_allow_html=True)
     q, ask_demo = st.columns([3,1])
     with q:
       demo_q = 'Government funding of the energy transition'
@@ -158,11 +158,11 @@ def main():
       
       
   with live_tab:
-    st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'> Type a Policy, Law or Idea of your choice </h2>", unsafe_allow_html=True)
     
     col1, col2 = st.columns([4, 1])
     with col1:
-      question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'Closing the pay gap')
+      question = st.text_input('Analyze with Gemini AI', 'Closing the pay gap', key='collapsed')
     with col2:
       ask_live = st.button('Ask Gemini AI', use_container_width=True)
 
