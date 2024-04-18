@@ -163,7 +163,7 @@ def main():
     col1, col2 = st.columns([4, 1])
     with col1:
       question = st.text_input('Analyze with Gemini AI', 'Closing the pay gap', 
-                               label_visibility=collapsed)
+                               label_visibility='collapsed')
     with col2:
       ask_live = st.button('Ask Gemini AI', use_container_width=True)
 
