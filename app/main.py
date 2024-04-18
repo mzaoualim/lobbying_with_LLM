@@ -157,7 +157,7 @@ def main():
       
   with live_tab:
     st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
-    ask_live = st.button('Analyze!', use_container_width=True)
+    ask_live = st.button('Ask Gemini AI', use_container_width=True)
     question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
     st.write('---')
 
