@@ -83,7 +83,7 @@ def main():
   # Ask Gemini
   st.markdown("<h2 style='text-align: center;'> Ask </h2>", unsafe_allow_html=True)
   
-  #Button for submit
+  #tabs for saved demo case or live demo
   demo_tab, live_tab = st.tabs(['Demo Results', 'Live Results'])
   with demo_tab:
     # Question
@@ -96,8 +96,8 @@ def main():
       ask_butt = st.button('Analyze!', use_container_width=True)
     
     # Results
-    if ask_demo:
-      st.markdown("<h2 style='text-align: center;'> Senators Lists by Position </h2>", unsafe_allow_html=True)
+    if ask_butt:
+      st.markdown("<h2 style='text-align: center;'> Senators list by position </h2>", unsafe_allow_html=True)
       demo_df = pd.read_csv('app/demonstration_dataframe.csv', 
                             usecols=[1,2,3,4])
       st.dataframe(demo_df.fillna(''), use_container_width=True, hide_index=True)
@@ -156,16 +156,18 @@ def main():
       
       
   with live_tab:
-    ask = st.button('Analyze!', use_container_width=True)
+    st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
+    ask_live = st.button('Analyze!', use_container_width=True)
     question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
-    
+    st.write('---')
+
     #When button is clicked
     if ask:
       response = get_sen_stance(documents, question)
       st.write('---')
         
       # Results
-      st.markdown("<h2 style='text-align: center;'> Senators Lists </h2>", unsafe_allow_html=True)
+      st.markdown("<h2 style='text-align: center;'> Senators list by Position </h2>", unsafe_allow_html=True)
       df, answer = dataframe_answer(response, 'app/tweets_data.csv')
       st.dataframe(df, use_container_width=True, hide_index=True)
       st.write('---')
