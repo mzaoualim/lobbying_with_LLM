@@ -180,6 +180,7 @@ def main():
         
       # Results
       st.markdown("<h2 style='text-align: center;'> Senators list by Position </h2>", unsafe_allow_html=True)
+      st.write(response)
       df, answer = dataframe_answer(response, 'app/tweets_data.csv')
       st.dataframe(df, use_container_width=True, hide_index=True)
       st.write('---')
