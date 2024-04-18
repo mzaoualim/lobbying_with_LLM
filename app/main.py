@@ -164,7 +164,6 @@ def main():
     #When button is clicked
     if ask_live:
       response = get_sen_stance(documents, question)
-      st.write('---')
         
       # Results
       st.markdown("<h2 style='text-align: center;'> Senators list by Position </h2>", unsafe_allow_html=True)
