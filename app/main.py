@@ -151,7 +151,7 @@ def main():
       sizes = [len(i) for i in answer_dict.values() if len(i) > 0] + [len_undecided if len_undecided > 0 else '']
   
       fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-      fig.update_layout(title_text='Senatorial Stance Repartition', font_color="red")
+      fig.update_layout(title_text='Senatorial Stance Repartition', "textfont": {'color': 'black', 'size': 15})
       st.plotly_chart(fig, use_container_width=False, theme="streamlit")
       
       
@@ -181,7 +181,7 @@ def main():
       # fig, ax = plt.subplots()
       # ax.pie(sizes, labels=labels, autopct='%.1f%%')
       fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-      fig.update_layout(title_text=f'Senatorial Stance on {question}')
+      fig.update_layout(title_text=f'Senatorial Stance on {question}', "textfont": {'color': 'black', 'size': 15})
       st.plotly_chart(fig, use_container_width=False, theme="streamlit")
       # st.pyplot(fig)
       st.write('---')
