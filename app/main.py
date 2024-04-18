@@ -143,7 +143,8 @@ def main():
       '@SenWarren',
       '@SenWhitehouse']
                     }
-  
+
+      st.markdown("<h2 style='text-align: center;'> Positions Distribution </h2>", unsafe_allow_html=True)
       # compute the size of remaining undecided senators
       len_undecided = 100 - sum([len(i) for i in answer_dict.values()])
   
@@ -174,7 +175,7 @@ def main():
       st.dataframe(df, use_container_width=True, hide_index=True)
       st.write('---')
     
-      st.markdown("<h2 style='text-align: center;'> PieChart </h2>", unsafe_allow_html=True)
+      st.markdown("<h2 style='text-align: center;'> Positions Distribution </h2>", unsafe_allow_html=True)
       # PieChart of Senatorial Stance    
       # compute the size of remaining undecided senators
       len_undecided = 100 - sum([len(i) for i in answer.values()])
@@ -183,10 +184,7 @@ def main():
       
       fig, ax = plt.subplots()
       ax.pie(sizes, labels=labels, autopct='%.1f%%')
-      # fig = go.Figure(data=[go.Pie(labels=labels, values=sizes, hole=.3)])
-      # fig.update_layout(title_text=f'Senatorial Stance on {question}', font = {'color': 'black', 'size': 15})
-      # st.plotly_chart(fig, use_container_width=False, theme="streamlit")
-      st.pyplot(fig)
+
       st.write('---')
 
   
