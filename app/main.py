@@ -81,7 +81,7 @@ def main():
   # Ask Gemini
   st.markdown("<h3 style='text-align: center;'> With the help of Gemini AI </h3>", unsafe_allow_html=True)
   st.markdown("<h3 style='text-align: center;'> Derive Senatorial Stance on Policies, Laws and Ideas... </h3>", unsafe_allow_html=True)
-  st.markdown("<h3 style='text-align: center;'> by Analysing the Senators' published tweets (X) </h3>", unsafe_allow_html=True)
+  st.markdown("<h3 style='text-align: center;'> by Analyzing the Senators' published tweets (X) </h3>", unsafe_allow_html=True)
   st.write('---')
   
   #tabs for saved demo case or live demo
@@ -159,15 +159,24 @@ def main():
       
   with live_tab:
     st.markdown("<h2 style='text-align: center;'> Question </h2>", unsafe_allow_html=True)
-    ask_live = st.button('Ask Gemini AI', use_container_width=True)
-    question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'debt ceiling')
+    
+    col1, col2 = st.columns([4, 1])
+    with col1:
+      question = st.text_input('Ask Gemini-AI about Senatorial Stance', 'Closing the pay gap')
+    with col2:
+      ask_live = st.button('Ask Gemini AI', use_container_width=True)
+
     st.write('---')
 
     #When button is clicked
     if ask_live:
+
       GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
       os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
       response = get_sen_stance(documents, question)
+      with st.spinner('Retrieving Gemini AI Analysis'):
+        f.fit(progress = True)
+        st.success("Done!")
         
       # Results
       st.markdown("<h2 style='text-align: center;'> Senators list by Position </h2>", unsafe_allow_html=True)
