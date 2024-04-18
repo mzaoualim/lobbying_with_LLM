@@ -193,7 +193,8 @@ def main():
       
       fig, ax = plt.subplots()
       ax.pie(sizes, labels=labels, autopct='%.1f%%')
-
+      st.pyplot(fig)
+      
       st.write('---')
 
   
