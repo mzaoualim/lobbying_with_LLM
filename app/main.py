@@ -92,8 +92,8 @@ def main():
     with q:
       demo_q = 'What is the senatorial stance on the government funding of the energy transition?'
       st.write(demo_q)
-    with ask_butt:
-      ask_demo = st.button('Analyze!', use_container_width=True)
+    with ask_demo:
+      ask_butt = st.button('Analyze!', use_container_width=True)
     
     # Results
     if ask_demo:
