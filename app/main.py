@@ -173,9 +173,8 @@ def main():
 
       GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
       os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
-      response = get_sen_stance(documents, question)
       with st.spinner('Retrieving Gemini AI Analysis'):
-        f.fit(progress = True)
+        response = get_sen_stance(documents, question)
         st.success("Done!")
         
       # Results
