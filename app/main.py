@@ -48,9 +48,15 @@ def dataframe_answer(response, tweet_data_link='app/tweets_data.csv'):
   Senators who Support, Oppose, Neutral or Undecided vis-a-vis the question asked
   '''
   # cleaning dicitonnary
-  for a, b in response.items():
-    answer = eval(b.strip("```python\n"))
-
+  # for a, b in response.items():
+  #   answer = eval(b.strip("```python\n"))
+  for i in response['output_text']:
+    if i == '{':
+      f = response['output_text'].index(i)
+    elif i == '}':
+      l = response['output_text'].index(i)
+  answer = eval(response['output_text'][f:l+1])
+  
   # Initial DataFrame
   initial_df = pd.DataFrame.from_dict(answer, orient='index').T
 
