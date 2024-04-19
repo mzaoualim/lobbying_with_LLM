@@ -6,3 +6,5 @@
   * A Table with all senators twitter handles separated into Support, Opposition, Neutral and Undecided with regard to the asked question by user.
   
   * A Pie Chart to visualize, in percentage points, the distribution of senators' positions.
+
+## Have fun with the live [web-application here](https://lobbying-ai.streamlit.app)
