@@ -34,7 +34,7 @@ def get_sen_stance(documents, question):
   prompt = PromptTemplate(template=prompt_template, input_variables=['context', 'question'])
   
   # Load QA Chain
-  model = ChatGoogleGenerativeAI(model="gemini-1.5-pro-latest", temperature=1, api_key=os.environ['GOOGLE_API_KEY'])
+  model = ChatGoogleGenerativeAI(model="gemini-2.5", temperature=1, api_key=os.environ['GOOGLE_API_KEY'])
   # Load QA Chain
   chain = load_qa_chain(model, chain_type="stuff", prompt=prompt)
   # Get Response
