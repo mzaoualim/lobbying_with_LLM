@@ -178,7 +178,7 @@ def main():
     #When button is clicked
     if ask_live:
 
-      GOOGLE_API_KEY = 'AIzaSyB2r1O8ufJ-zelvvOlbef3ZVxJLTWPBkOg'
+      GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
       os.environ['GOOGLE_API_KEY'] = GOOGLE_API_KEY
       with st.spinner('Retrieving Gemini AI Analysis'):
         response = get_sen_stance(documents, question)
